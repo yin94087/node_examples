@@ -1,0 +1,9 @@
+let csvToJson = require('convert-csv-to-json');
+var fs = require("fs");
+var input = process.argv.slice(2)[0];
+let json = csvToJson.fieldDelimiter(',').getJsonFromCsv(input);
+var j = JSON.stringify(json);
+console.log(j);
+//fs.writeFile(input.substring(0,input.indexOf(".csv"))+".json",j);
+
+

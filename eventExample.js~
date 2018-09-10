@@ -1,0 +1,37 @@
+
+
+process.argv.forEach(function (val, index, array) {
+        console.log(index + ': ' + val);
+    });
+
+
+var Web3 = require('web3');
+web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
+
+//var contract_abi = eth.contract(abi);
+//var bytecode = '0x ... ';
+//var contract_abi = eth.contract(abi);                                        
+//var bytecode = '0x ... ';                                                    
+//var deploy = { from: eth.coinbase, data:bytecode, gas: 2000000};
+//var partialInst = contract_abi.new ("<constructor arg", deploy);
+//var inst=contract_abi.at(partialInst.address);
+
+// get an instance of the DataReader contract
+var abi="";
+var datareader=eth.conract(abi).at(DataReaderAddress);
+
+var exampleEvent = datareader.ReadData({_from: web3.eth.coinbase},{_value: 9});
+exampleEvent.watch(function(err, result) {
+	if (err) {
+	    console.log(err)
+	    return;
+	}
+	console.log(result.args.address);
+	console.log(result.args._value);
+	    // check that result.args._from is web3.eth.coinbase then
+	    // display result.args._value in the UI and call    
+	    // exampleEvent.stopWatching()
+})
+
+
+    datareader.readdata.sendTransaction(2, {from: web.eth.coinbase});
